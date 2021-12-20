@@ -33,6 +33,7 @@ dependencies:
   stacked: ^2.2.7+1
   stacked_services: ^0.8.16
   stacked_hooks: ^0.2.1+1
+  google_fonts: ^2.1.0
   
 
 
