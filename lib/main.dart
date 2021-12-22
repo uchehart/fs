@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-//import 'package:foodsub/app/app.router.dart';
-import 'package:foodsub/ui/views/home/home_view.dart';
-import 'package:stacked_services/stacked_services.dart';
-import 'package:stacked_themes/stacked_themes.dart';
-//import 'package:stacked_services/stacked_services.dart';
-
-import 'app/app.locator.dart';
-import 'app/app.router.dart';
+import 'package:foodsub/ui/views/startup/splash_screen_view.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setupLocator(); // Await will be added in future
 
-  runApp(HomeView());
+  runApp(const HomeView());
+}
+
+class HomeView extends StatelessWidget {
+  const HomeView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: SplashScreenView(),
+    );
+  }
 }
