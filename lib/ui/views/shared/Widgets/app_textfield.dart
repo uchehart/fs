@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodsub/ui/views/shared/Widgets/colors.dart';
+import 'package:foodsub/ui/views/shared/Widgets/style.dart';
 
 class AppTextField extends StatelessWidget {
   final String? hintText;
@@ -58,14 +59,14 @@ class AppTextField extends StatelessWidget {
 //        label != null ? const SizedBox(height: 6) : SizedBox(),
         Text(
           title!,
-          // style: kLabelText,
+                   style: AppTextStyles.heading3.copyWith(fontSize: 18, height: height, ),
         ),
         const SizedBox(height: 8),
         TextFormField(
           initialValue: intial,
           onSaved: onSaved,
           controller: controller,
-          style: TextStyle(color: textColor, fontSize: 18, height: height),
+          style: AppTextStyles.heading3.copyWith(fontSize: 18, height: height, ),
           onChanged: onChanged,
           maxLines: maxLines ?? 1,
           validator: validator,
