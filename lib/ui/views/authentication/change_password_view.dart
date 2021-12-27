@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:foodsub/ui/views/home/home_screen.dart';
 import 'package:foodsub/ui/views/shared/Widgets/app_button.dart';
 import 'package:foodsub/ui/views/shared/Widgets/app_textfield.dart';
 import 'package:foodsub/ui/views/shared/Widgets/colors.dart';
@@ -73,7 +74,10 @@ class ChangePasswordView extends StatelessWidget {
                   Expanded(
                     child: AppButton(
                       label: "Update Password",
-                      onPressed: () {},
+                      onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => HomeScreenView()),
+                      ),
                     ),
                   ),
                 ],
