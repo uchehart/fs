@@ -25,13 +25,15 @@ class HomeView extends StatelessWidget {
         builder: (context) {
           switch (routeSettings.name) {
             case Navigator.defaultRouteName:
-              return HomeScreenView();
+              return const SplashScreenView();
             case MealOrderView.routeName:
               return const MealOrderView();
             case SubscribeView.routeName:
               return const SubscribeView();
             case MealMenuView.routeName:
               return const MealMenuView();
+            case HomeScreenView.routeName:
+              return HomeScreenView();
           }
 
           throw FlutterError("Unknown Route: ${routeSettings.name}");
@@ -44,7 +46,6 @@ class HomeView extends StatelessWidget {
           primary: AppColors.orange,
         ),
       ),
-      // home: SplashScreenView(),
     );
   }
 }
