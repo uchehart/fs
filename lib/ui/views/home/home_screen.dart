@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodsub/ui/views/shared/Widgets/colors.dart';
 import 'package:foodsub/ui/views/shared/Widgets/nav_bar.dart';
+import 'package:foodsub/ui/views/subscription/subscribe_view.dart';
 
 class HomeScreenView extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class HomeScreenView extends StatefulWidget {
 
 class _HomeScreenViewState extends State<HomeScreenView> {
   final List<Widget> _children = [
-    Center(child: Text("jkd")),//Home widget should be placed here
+    Center(child: SubscribeView()),//Home widget should be placed here
     Center(child: Text("Histoy")),//History widget should be placed here
     Center(child: Text("Cart")),//Cart widget should be placed here
     Center(child: Text("Profile")),//Profile widget should be placed here
