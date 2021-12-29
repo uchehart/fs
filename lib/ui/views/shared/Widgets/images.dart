@@ -1,3 +1,12 @@
 const String onboarding1 = "assets/onboarding1.svg";
 const String onboarding2 = "assets/onboarding2.svg";
 const String onboarding3 = "assets/onboarding3.svg";
+const String breakFast = "assets/breakfast.jpg";
+const String launch = "assets/launch.jpg";
+const String drink = "assets/drink.jpg";
+const String breakFast2 = "assets/breakfast2.png";
+const String calendarCurrent = "assets/calendarCurrent.jpg";
+const String calendarPrev = "assets/calendarPrev.jpg";
+const String calendarPrev2 = "assets/calendarPrev2.jpg";
+const String fire = "assets/fire.png";
+const String sausage = "assets/sausage.png";
