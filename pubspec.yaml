@@ -36,7 +36,7 @@ dependencies:
   google_fonts: ^2.1.0
   flutter_rating_bar: ^4.0.0
   flutter_svg: ^0.20.0-nullsafety.3
-
+  fluttertoast: ^8.0.8
 
 
 

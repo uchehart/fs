@@ -59,7 +59,17 @@ class MealMenuController with ChangeNotifier {
     ),
   ];
 
-  late Meal selectedMeal = availableMeals[0];
+  String get selectedMealType => SubscribeController.instance.selectedMealType;
+
+  List<Meal> get selectedMeals =>
+      [...availableMeals.where((meal) => meal.selected)];
+
+  late Meal queriedMeal;
+
+  void toggleSelected(Meal meal) {
+    meal.selected = !meal.selected;
+    notifyListeners();
+  }
 
   void toggleHearted(Meal meal) {
     meal.hearted = !meal.hearted;
@@ -68,11 +78,6 @@ class MealMenuController with ChangeNotifier {
 
   void setMealType(String type) {
     SubscribeController.instance.setMealType(type);
-    notifyListeners();
-  }
-
-  void setMeal(Meal meal) {
-    selectedMeal = meal;
     notifyListeners();
   }
 }

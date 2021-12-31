@@ -9,7 +9,9 @@ class Meal {
   final double price;
   final int cals;
   final int revs;
+  bool selected;
   bool hearted;
+  int count;
 
   Meal({
     required this.name,
@@ -19,8 +21,10 @@ class Meal {
     required this.description,
     required this.nutritionalValues,
     required this.ingredients,
+    this.selected = false,
     this.hearted = false,
     this.rating = 1.0,
+    this.count = 1,
     this.cals = 0,
     this.revs = 0,
   });

@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:foodsub/ui/views/shared/Widgets/colors.dart';
-import 'package:foodsub/ui/views/subscription/meal_order_controller.dart';
+import 'package:foodsub/ui/views/subscription/meal_info_controller.dart';
 import 'package:foodsub/ui/views/subscription/shared/big_button.dart';
 import 'package:foodsub/utilities/constants.dart';
 import 'package:foodsub/utilities/exts.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class MealOrderView extends StatelessWidget {
-  const MealOrderView({Key? key}) : super(key: key);
+class MealInfoView extends StatelessWidget {
+  const MealInfoView({Key? key}) : super(key: key);
 
-  static const routeName = "/subscribe-meal-order";
+  static const routeName = "/subscribe-meal-info";
 
   @override
   Widget build(BuildContext context) {
-    final controller = MealOrderController.instance;
+    final controller = MealInfoController.instance;
     return AnnotatedRegion(
       value: const SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.dark,
@@ -55,7 +55,7 @@ class MealOrderView extends StatelessWidget {
                 const SizedBox(height: 20.0),
                 Center(
                   child: Container(
-                    width: context.widthBy(0.32),
+                    width: context.width(132),
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16.0),
@@ -67,7 +67,7 @@ class MealOrderView extends StatelessWidget {
                       children: [
                         IconButton(
                           icon: const Icon(Icons.remove, color: Colors.white),
-                          onPressed: controller.numberOfServings > 1
+                          onPressed: controller.meal.count > 1
                               ? controller.decrementServings
                               : null,
                           padding: EdgeInsets.zero,
@@ -78,16 +78,16 @@ class MealOrderView extends StatelessWidget {
                             shape: BoxShape.circle,
                             color: Colors.white,
                           ),
-                          height: context.widthBy(0.072),
-                          width: context.widthBy(0.072),
+                          height: context.width(28),
+                          width: context.width(28),
                           child: Text(
-                            "${controller.numberOfServings}",
+                            "${controller.meal.count}",
                             style: GoogleFonts.montserrat(color: AppColors.ash),
                           ),
                         ),
                         IconButton(
                           icon: const Icon(Icons.add, color: Colors.white),
-                          onPressed: controller.numberOfServings < 10
+                          onPressed: controller.meal.count < 10
                               ? controller.incrementServings
                               : null,
                           padding: EdgeInsets.zero,
@@ -160,7 +160,7 @@ class MealOrderView extends StatelessWidget {
                                             gridDelegate:
                                                 SliverGridDelegateWithFixedCrossAxisCount(
                                               crossAxisSpacing:
-                                                  context.widthBy(0.28),
+                                                  context.width(116),
                                               mainAxisSpacing: 2.0,
                                               mainAxisExtent: 20.0,
                                               crossAxisCount: 2,
@@ -275,7 +275,6 @@ class MealOrderView extends StatelessWidget {
                               alignment: Alignment.topRight,
                               children: [
                                 Container(
-                                  width: context.widthBy(0.2),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12.0),
                                     border: Border.all(
@@ -289,7 +288,8 @@ class MealOrderView extends StatelessWidget {
                                       fit: BoxFit.cover,
                                     ),
                                   ),
-                                  height: 64.0,
+                                  height: context.height(64),
+                                  width: context.width(82),
                                 ),
                                 if (addition.added)
                                   const Padding(

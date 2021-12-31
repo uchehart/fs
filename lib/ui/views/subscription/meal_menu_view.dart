@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:foodsub/ui/views/shared/Widgets/colors.dart';
-import 'package:foodsub/ui/views/subscription/meal_order_view.dart';
+import 'package:foodsub/ui/views/cart/cart_view.dart';
+import 'package:foodsub/ui/views/subscription/meal_info_view.dart';
 import 'package:foodsub/ui/views/subscription/meal_menu_controller.dart';
 import 'package:foodsub/ui/views/subscription/shared/big_button.dart';
 import 'package:foodsub/ui/views/subscription/subscribe_controller.dart';
@@ -20,15 +22,14 @@ class MealMenuView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final lastController = SubscribeController.instance;
-    final thisController = MealMenuController.instance;
+    final controller = MealMenuController.instance;
     return AnnotatedRegion(
       value: const SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.dark,
         statusBarColor: Colors.transparent,
       ),
       child: AnimatedBuilder(
-        animation: thisController,
+        animation: controller,
         builder: (context, child) => Scaffold(
           appBar: AppBar(
             iconTheme: const IconThemeData(color: AppColors.ash),
@@ -52,7 +53,7 @@ class MealMenuView extends StatelessWidget {
                     color: AppColors.ash,
                   ),
                 ),
-              )
+              ),
             ],
           ),
           body: Column(
@@ -103,18 +104,18 @@ class MealMenuView extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final type = mealTypes[index];
                     return GestureDetector(
-                      onTap: () => thisController.setMealType(type),
+                      onTap: () => controller.setMealType(type),
                       child: Container(
+                        width: context.width(96),
                         decoration: BoxDecoration(
-                          color: type == lastController.selectedMealType
+                          color: type == controller.selectedMealType
                               ? AppColors.orange
                               : Colors.white,
-                          boxShadow: type != lastController.selectedMealType
+                          boxShadow: type != controller.selectedMealType
                               ? boxShadow
                               : null,
                           borderRadius: BorderRadius.circular(16.0),
                         ),
-                        width: context.widthBy(0.232),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -127,7 +128,7 @@ class MealMenuView extends StatelessWidget {
                             Text(
                               type,
                               style: GoogleFonts.montserrat(
-                                color: type != lastController.selectedMealType
+                                color: type != controller.selectedMealType
                                     ? AppColors.ash
                                     : Colors.white,
                                 fontSize: 12.0,
@@ -145,29 +146,31 @@ class MealMenuView extends StatelessWidget {
                 child: ListView.separated(
                   physics: bouncingPhysics,
                   padding: const EdgeInsets.all(32.0),
-                  itemCount: thisController.availableMeals.length,
+                  itemCount: controller.availableMeals.length,
                   separatorBuilder: (context, index) =>
                       const SizedBox(height: 24.0),
                   itemBuilder: (context, index) {
-                    final meal = thisController.availableMeals[index];
+                    final meal = controller.availableMeals[index];
                     final smallText = GoogleFonts.montserrat(
-                      color: meal != thisController.selectedMeal
-                          ? AppColors.ash
-                          : Colors.white,
+                      color: !meal.selected ? AppColors.ash : Colors.white,
                       fontSize: 12.0,
                     );
                     return GestureDetector(
-                      onTap: () => thisController.setMeal(meal),
+                      onTap: () => controller.toggleSelected(meal),
+                      onDoubleTap: () {
+                        controller.queriedMeal = meal;
+                        Navigator.pushNamed(
+                          context,
+                          MealInfoView.routeName,
+                        );
+                      },
                       child: Container(
                         padding: const EdgeInsets.all(20.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16.0),
-                          boxShadow: meal != thisController.selectedMeal
-                              ? boxShadow
-                              : null,
-                          color: meal == thisController.selectedMeal
-                              ? AppColors.orange
-                              : Colors.white,
+                          boxShadow: !meal.selected ? boxShadow : null,
+                          color:
+                              meal.selected ? AppColors.orange : Colors.white,
                         ),
                         child: Row(
                           children: [
@@ -185,7 +188,7 @@ class MealMenuView extends StatelessWidget {
                                   Text(
                                     meal.name,
                                     style: GoogleFonts.montserrat(
-                                      color: meal != thisController.selectedMeal
+                                      color: !meal.selected
                                           ? AppColors.ash
                                           : Colors.white,
                                     ),
@@ -204,9 +207,7 @@ class MealMenuView extends StatelessWidget {
                                           itemBuilder: (context, index) {
                                             return Icon(
                                               Icons.star,
-                                              color: meal !=
-                                                      thisController
-                                                          .selectedMeal
+                                              color: !meal.selected
                                                   ? AppColors.ratingGold
                                                   : Colors.white,
                                             );
@@ -236,13 +237,12 @@ class MealMenuView extends StatelessWidget {
                               ),
                             ),
                             IconButton(
-                              onPressed: () =>
-                                  thisController.toggleHearted(meal),
+                              onPressed: () => controller.toggleHearted(meal),
                               icon: Icon(
                                 meal.hearted
                                     ? CupertinoIcons.heart_fill
                                     : CupertinoIcons.heart,
-                                color: meal != thisController.selectedMeal
+                                color: !meal.selected
                                     ? AppColors.orange
                                     : Colors.white,
                               ),
@@ -255,13 +255,19 @@ class MealMenuView extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(32.0, 16.0, 32.0, 16.0),
+                padding: const EdgeInsets.fromLTRB(32.0, 0.0, 32.0, 16.0),
                 child: BigButton(
                   label: "Next",
-                  onTap: () => Navigator.pushNamed(
-                    context,
-                    MealOrderView.routeName,
-                  ),
+                  onTap: () {
+                    if (controller.selectedMeals.isNotEmpty) {
+                      Navigator.pushNamed(
+                        context,
+                        CartView.routeName,
+                      );
+                    } else {
+                      Fluttertoast.showToast(msg: "Select At Least One Meal");
+                    }
+                  },
                 ),
               ),
             ],

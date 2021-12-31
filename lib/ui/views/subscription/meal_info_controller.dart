@@ -4,11 +4,11 @@ import 'package:foodsub/models/meal.dart';
 import 'package:foodsub/ui/views/subscription/meal_menu_controller.dart';
 import 'package:foodsub/utilities/constants.dart';
 
-class MealOrderController with ChangeNotifier {
-  static MealOrderController get instance =>
-      _instance ??= MealOrderController();
+class MealInfoController with ChangeNotifier {
+  static MealInfoController get instance =>
+      _instance ??= MealInfoController();
 
-  static MealOrderController? _instance;
+  static MealInfoController? _instance;
 
   late List<Addition> availableAdditions = [
     Addition(
@@ -28,21 +28,20 @@ class MealOrderController with ChangeNotifier {
   List<Addition> get addedAdditions =>
       [...availableAdditions.where((addition) => addition.added)];
 
-  Meal get meal => MealMenuController.instance.selectedMeal;
+  Meal get meal => MealMenuController.instance.queriedMeal;
 
   late String preference = dummyPreferences[0];
   late String showingAttr = mealAttributes[0];
-  late int numberOfServings = 1;
 
   late PageController pager;
 
   void incrementServings() {
-    numberOfServings++;
+    meal.count++;
     notifyListeners();
   }
 
   void decrementServings() {
-    numberOfServings--;
+    meal.count--;
     notifyListeners();
   }
 

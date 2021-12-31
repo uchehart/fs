@@ -17,13 +17,21 @@ const boxShadow = [
   ),
 ];
 
+// Sizes
+const modelWidth = 411.42857;
+const modelHeight = 843.42857;
+
 // Dummy
+const dummyUserName= "Uche";
+
 const dummyBigImage = "assets/jollof_rice_meal_large.png";
 
 const dummyDescription =
     "Fried rice is a dish of cooked rice that is stir-fried in a "
     "frying pan and is usually mixed with other ingredients "
     "such as vegetables, seafood or meat.";
+
+const dummyNumberOfMealsLeft = 4;
 
 const dummyNutritionalValues = [
   [

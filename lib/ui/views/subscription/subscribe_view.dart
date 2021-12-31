@@ -50,7 +50,7 @@ class SubscribeView extends StatelessWidget {
                     color: AppColors.ash,
                   ),
                 ),
-              )
+              ),
             ],
           ),
           body: SingleChildScrollView(
@@ -75,7 +75,7 @@ class SubscribeView extends StatelessWidget {
                         OptionRect(
                           onTap: () => controller.setMealType(type),
                           chosen: type == controller.selectedMealType,
-                          width: context.widthBy(0.4),
+                          width: context.width(164),
                           label: type,
                         ),
                     ],
@@ -94,7 +94,7 @@ class SubscribeView extends StatelessWidget {
                       OptionRect(
                         onTap: () => controller.setDeliveryInterval(interval),
                         chosen: interval == controller.selectedDeliveryInterval,
-                        width: context.widthBy(0.25),
+                        width: context.width(102),
                         label: interval,
                       ),
                   ],
@@ -142,7 +142,7 @@ class SubscribeView extends StatelessWidget {
                             controller.setSubscriptionDuration(duration),
                         chosen:
                             duration == controller.selectedSubscriptionDuration,
-                        width: context.widthBy(0.4),
+                        width: context.width(164),
                         label: duration,
                       ),
                   ],
