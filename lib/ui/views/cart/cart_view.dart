@@ -170,10 +170,8 @@ class CartView extends StatelessWidget {
                             shrinkWrap: true,
                             children: [
                               _getSummaryRow(
-                                "Meals",
-                                controller.meals
-                                    .map((meal) => meal.name)
-                                    .join(", "),
+                                "Number Of Meals",
+                                "${controller.meals.length}",
                               ),
                               const SizedBox(height: 16.0),
                               _getSummaryRow(
@@ -182,7 +180,7 @@ class CartView extends StatelessWidget {
                               ),
                               const SizedBox(height: 16.0),
                               _getSummaryRow(
-                                "Preferred Days",
+                                "Delivery Days",
                                 root.selectedDays
                                     .map((day) =>
                                         day.name.toNameCase().substring(0, 3))
@@ -190,7 +188,7 @@ class CartView extends StatelessWidget {
                               ),
                               const SizedBox(height: 16.0),
                               _getSummaryRow(
-                                "Subscription Duration",
+                                "Plan",
                                 root.selectedSubscriptionDuration,
                               ),
                               const SizedBox(height: 16.0),
@@ -201,8 +199,14 @@ class CartView extends StatelessWidget {
                               ),
                               const SizedBox(height: 16.0),
                               _getSummaryRow(
-                                "Price",
-                                "₦ 20,000 / ${root.selectedSubscriptionDuration}",
+                                "Total Price",
+                                "₦ " +
+                                    NumberFormat.decimalPattern().format(
+                                      controller.meals.fold<double>(
+                                        0.0,
+                                        (total, meal) => total + meal.price,
+                                      ),
+                                    ),
                               ),
                             ],
                           ),
