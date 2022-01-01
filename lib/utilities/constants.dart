@@ -22,7 +22,7 @@ const modelWidth = 411.42857;
 const modelHeight = 843.42857;
 
 // Dummy
-const dummyUserName= "Uche";
+const dummyUserName= "Uche Hart";
 
 const dummyBigImage = "assets/jollof_rice_meal_large.png";
 

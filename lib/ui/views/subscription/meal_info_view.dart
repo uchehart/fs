@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:foodsub/ui/views/shared/Widgets/colors.dart';
+import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/subscription/meal_info_controller.dart';
-import 'package:foodsub/ui/views/subscription/shared/big_button.dart';
+import 'package:foodsub/ui/views/shared/widgets/big_button.dart';
+import 'package:foodsub/ui/views/subscription/meal_menu_controller.dart';
 import 'package:foodsub/utilities/constants.dart';
 import 'package:foodsub/utilities/exts.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -355,7 +356,14 @@ class MealInfoView extends StatelessWidget {
                 const SizedBox(height: 24.0),
                 BigButton(
                   label: "Add To Cart",
-                  onTap: () {},
+                  onPressed: () {
+                    if (!controller.meal.selected) {
+                      MealMenuController.instance
+                          .toggleSelected(controller.meal);
+                    }
+
+                    Navigator.pop(context);
+                  },
                 ),
               ],
             ),

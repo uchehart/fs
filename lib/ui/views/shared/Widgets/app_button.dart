@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodsub/ui/views/shared/Widgets/colors.dart';
+import 'package:foodsub/ui/views/shared/colors.dart';
 
 class AppButton extends StatelessWidget {
   final VoidCallback? onPressed;

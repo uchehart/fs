@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:foodsub/ui/views/cart/cart_view.dart';
+import 'package:foodsub/ui/views/checkout/checkout_view.dart';
 import 'package:foodsub/ui/views/home/home_screen.dart';
-import 'package:foodsub/ui/views/shared/Widgets/colors.dart';
+import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/startup/onboarding_view.dart';
 import 'package:foodsub/ui/views/subscription/meal_info_view.dart';
 import 'package:foodsub/ui/views/subscription/meal_menu_view.dart';
@@ -25,14 +26,16 @@ class HomeView extends StatelessWidget {
           switch (routeSettings.name) {
             case Navigator.defaultRouteName:
               return const OnboardingView();
-            case MealInfoView.routeName:
-              return const MealInfoView();
+            case HomeScreenView.routeName:
+              return const HomeScreenView();
             case SubscribeView.routeName:
               return const SubscribeView();
+            case MealInfoView.routeName:
+              return const MealInfoView();
             case MealMenuView.routeName:
               return const MealMenuView();
-            case HomeScreenView.routeName:
-              return HomeScreenView();
+            case CheckoutView.routeName:
+              return const CheckoutView();
             case CartView.routeName:
               return const CartView();
           }

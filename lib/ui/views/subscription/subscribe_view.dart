@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:foodsub/ui/views/shared/widgets/colors.dart';
+import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/subscription/meal_menu_view.dart';
-import 'package:foodsub/ui/views/subscription/shared/big_button.dart';
-import 'package:foodsub/ui/views/subscription/shared/option_rect.dart';
 import 'package:foodsub/ui/views/subscription/subscribe_controller.dart';
+import 'package:foodsub/ui/views/shared/widgets/big_button.dart';
+import 'package:foodsub/ui/views/shared/widgets/option_rect.dart';
 import 'package:foodsub/utilities/constants.dart';
 import 'package:foodsub/utilities/enums.dart';
 import 'package:foodsub/utilities/exts.dart';
@@ -188,7 +188,7 @@ class SubscribeView extends StatelessWidget {
                 ),
                 const SizedBox(height: 40.0),
                 BigButton(
-                  onTap: () => Navigator.pushNamed(
+                  onPressed: () => Navigator.pushNamed(
                     context,
                     MealMenuView.routeName,
                   ),

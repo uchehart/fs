@@ -2,12 +2,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:foodsub/ui/views/dashboard/dashboard_view.dart';
-import 'package:foodsub/ui/views/shared/Widgets/colors.dart';
-import 'package:foodsub/ui/views/shared/Widgets/nav_bar.dart';
+import 'package:foodsub/ui/views/shared/colors.dart';
+import 'package:foodsub/ui/views/shared/widgets/nav_bar.dart';
 import 'package:foodsub/ui/views/subscription/subscribe_view.dart';
 
 class HomeScreenView extends StatefulWidget {
   static const routeName = "/home";
+
+  const HomeScreenView({Key? key}) : super(key: key);
+
   @override
   State<HomeScreenView> createState() => _HomeScreenViewState();
 }

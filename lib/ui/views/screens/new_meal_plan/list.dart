@@ -1,5 +1,5 @@
-import 'package:foodsub/ui/views/shared/Widgets/images.dart';
-import 'package:foodsub/ui/views/shared/Widgets/meal_list.dart';
+import 'package:foodsub/ui/views/shared/images.dart';
+import 'package:foodsub/ui/views/shared/widgets/meal_list.dart';
 
 final List<MealList> meals = <MealList>[
   const MealList(

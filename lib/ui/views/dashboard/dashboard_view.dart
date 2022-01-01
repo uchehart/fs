@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:foodsub/ui/views/dashboard/dashboard_controller.dart';
-import 'package:foodsub/ui/views/shared/Widgets/colors.dart';
+import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/subscription/subscribe_view.dart';
 import 'package:foodsub/utilities/constants.dart';
 import 'package:foodsub/utilities/exts.dart';
@@ -58,7 +58,7 @@ class DashboardView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Hi, $dummyUserName!",
+                  "Hi, ${dummyUserName.split(" ").first}!",
                   style: GoogleFonts.montserrat(
                     fontWeight: FontWeight.w600,
                     color: AppColors.ash,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodsub/ui/views/shared/widgets/colors.dart';
+import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OptionRect extends StatelessWidget {

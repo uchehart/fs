@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:foodsub/ui/views/shared/Widgets/colors.dart';
 import 'package:foodsub/ui/views/cart/cart_view.dart';
+import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/subscription/meal_info_view.dart';
 import 'package:foodsub/ui/views/subscription/meal_menu_controller.dart';
-import 'package:foodsub/ui/views/subscription/shared/big_button.dart';
-import 'package:foodsub/ui/views/subscription/subscribe_controller.dart';
+import 'package:foodsub/ui/views/shared/widgets/big_button.dart';
 import 'package:foodsub/utilities/constants.dart';
 import 'package:foodsub/utilities/enums.dart';
 import 'package:foodsub/utilities/exts.dart';
@@ -258,7 +257,7 @@ class MealMenuView extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(32.0, 0.0, 32.0, 16.0),
                 child: BigButton(
                   label: "Next",
-                  onTap: () {
+                  onPressed: () {
                     if (controller.selectedMeals.isNotEmpty) {
                       Navigator.pushNamed(
                         context,
