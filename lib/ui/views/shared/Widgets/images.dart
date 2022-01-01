@@ -11,3 +11,4 @@ const String calendarPrev2 = "assets/calendarPrev2.jpg";
 const String fire = "assets/fire.png";
 const String sausage = "assets/sausage.png";
 const String avatar = "assets/avatar.png";
+const String foodsub = "assets/foodsub.png";
