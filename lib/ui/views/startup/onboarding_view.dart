@@ -3,10 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:foodsub/ui/views/authentication/sigin_in_view.dart';
-import 'package:foodsub/ui/views/shared/Widgets/app_button.dart';
-import 'package:foodsub/ui/views/shared/Widgets/colors.dart';
-import 'package:foodsub/ui/views/shared/Widgets/images.dart';
-import 'package:foodsub/ui/views/shared/Widgets/onboarding_column.dart';
+import 'package:foodsub/ui/views/shared/widgets/app_button.dart';
+import 'package:foodsub/ui/views/shared/colors.dart';
+import 'package:foodsub/ui/views/shared/images.dart';
+import 'package:foodsub/ui/views/shared/widgets/onboarding_column.dart';
 
 class OnboardingView extends StatefulWidget {
   const OnboardingView({Key? key}) : super(key: key);

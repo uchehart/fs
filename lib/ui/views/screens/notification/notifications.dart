@@ -1,5 +1,5 @@
 import 'package:foodsub/ui/views/screens/notification/notification_tile.dart';
-import 'package:foodsub/ui/views/shared/Widgets/images.dart';
+import 'package:foodsub/ui/views/shared/images.dart';
 
 final List<NotificationTile> notification = <NotificationTile>[
   const NotificationTile(
