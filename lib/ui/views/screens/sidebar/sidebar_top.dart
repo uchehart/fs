@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:foodsub/ui/views/shared/Widgets/colors.dart';
-import 'package:foodsub/ui/views/shared/Widgets/images.dart';
-import 'package:foodsub/ui/views/shared/Widgets/style.dart';
+import 'package:foodsub/ui/views/shared/colors.dart';
+import 'package:foodsub/ui/views/shared/images.dart';
+import 'package:foodsub/ui/views/shared/style.dart';
 
 class SideBarTop extends StatelessWidget {
   const SideBarTop({Key? key}) : super(key: key);

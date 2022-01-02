@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodsub/ui/views/screens/new_meal_plan/list.dart';
-import 'package:foodsub/ui/views/shared/Widgets/colors.dart';
-import 'package:foodsub/ui/views/shared/Widgets/style.dart';
+import 'package:foodsub/ui/views/shared/colors.dart';
+import 'package:foodsub/ui/views/shared/style.dart';
 
 import 'meal_history.dart';
 

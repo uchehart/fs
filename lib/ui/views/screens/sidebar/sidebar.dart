@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:foodsub/ui/views/screens/sidebar/sidebar_top.dart';
-import 'package:foodsub/ui/views/shared/Widgets/style.dart';
+import 'package:foodsub/ui/views/shared/style.dart';
 
 import 'dart:math' as math;
 
