@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/shared/images.dart';
-import 'package:foodsub/ui/views/shared/style.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SideBarTop extends StatelessWidget {
   const SideBarTop({Key? key}) : super(key: key);
@@ -30,16 +30,23 @@ class SideBarTop extends StatelessWidget {
               shape: BoxShape.circle,
               border: Border.all(width: 1, color: Colors.white)),
         ),
-        title: Text('Sammy Lembi',
-            style: AppTextStyles.heading3.copyWith(color: Colors.white)),
+        title: Text(
+          'Sammy Lembi',
+          style: GoogleFonts.montserrat(
+            fontWeight: FontWeight.w600,
+            color: AppColors.white,
+          ),
+        ),
         subtitle: Text(
           'leembisam@gmail.com',
-          style: AppTextStyles.subtitle.copyWith(color: Colors.white),
+          style: GoogleFonts.montserrat(
+            fontWeight: FontWeight.w600,
+            color: AppColors.white,
+          ),
         ),
         trailing: GestureDetector(
           child: const Icon(
             Icons.cancel_outlined,
-            size: 24,
             color: Colors.white,
           ),
         ),

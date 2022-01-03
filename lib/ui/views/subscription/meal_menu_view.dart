@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:foodsub/ui/views/cart/cart_view.dart';
+import 'package:foodsub/ui/views/screens/notification/notification_screen.dart';
 import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/subscription/meal_info_view.dart';
 import 'package:foodsub/ui/views/subscription/meal_menu_controller.dart';
@@ -46,7 +47,12 @@ class MealMenuView extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 20.0),
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      NotificationScreen.routeName,
+                    );
+                  },
                   icon: const Icon(
                     CupertinoIcons.bell,
                     color: AppColors.ash,

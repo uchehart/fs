@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:foodsub/ui/views/cart/cart_view.dart';
 import 'package:foodsub/ui/views/checkout/checkout_view.dart';
 import 'package:foodsub/ui/views/home/home_screen.dart';
+import 'package:foodsub/ui/views/screens/address/delivery_address.dart';
+import 'package:foodsub/ui/views/screens/notification/notification_screen.dart';
+import 'package:foodsub/ui/views/screens/sidebar/sidebar.dart';
 import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/startup/onboarding_view.dart';
 import 'package:foodsub/ui/views/subscription/meal_info_view.dart';
@@ -38,6 +41,16 @@ class HomeView extends StatelessWidget {
               return const CheckoutView();
             case CartView.routeName:
               return const CartView();
+            case DeliveryAddress.routeName:
+              return const DeliveryAddress();
+            case NotificationScreen.routeName:
+              return const NotificationScreen();
+            case SideBar.routeName:
+              return const SideBar();
+            case DummyScreens.routeName:
+              return const DummyScreens(
+                text: 'Dummy Screen',
+              );
           }
 
           throw FlutterError("Unknown Route: ${routeSettings.name}");

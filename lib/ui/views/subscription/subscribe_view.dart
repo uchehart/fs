@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:foodsub/ui/views/screens/notification/notification_screen.dart';
 import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/subscription/meal_menu_view.dart';
 import 'package:foodsub/ui/views/subscription/subscribe_controller.dart';
@@ -44,7 +45,12 @@ class SubscribeView extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 20.0),
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      NotificationScreen.routeName,
+                    );
+                  },
                   icon: const Icon(
                     CupertinoIcons.bell,
                     color: AppColors.ash,

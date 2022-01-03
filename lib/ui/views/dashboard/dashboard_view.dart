@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:foodsub/ui/views/dashboard/dashboard_controller.dart';
+import 'package:foodsub/ui/views/screens/notification/notification_screen.dart';
 import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/subscription/subscribe_view.dart';
 import 'package:foodsub/utilities/constants.dart';
@@ -42,7 +43,12 @@ class DashboardView extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(right: context.width(20)),
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      NotificationScreen.routeName,
+                    );
+                  },
                   icon: const Icon(
                     CupertinoIcons.bell,
                     color: AppColors.ash,
