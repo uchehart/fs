@@ -2,12 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:foodsub/ui/views/home/home_screen.dart';
-import 'package:foodsub/ui/views/shared/widgets/app_button.dart';
-import 'package:foodsub/ui/views/shared/widgets/app_textfield.dart';
 import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/shared/style.dart';
+import 'package:foodsub/ui/views/shared/widgets/app_button.dart';
+import 'package:foodsub/ui/views/shared/widgets/app_textfield.dart';
 
 class ChangePasswordView extends StatelessWidget {
+  const ChangePasswordView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

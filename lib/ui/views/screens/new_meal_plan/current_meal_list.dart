@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodsub/ui/views/screens/new_meal_plan/meals.dart';
 import 'package:foodsub/ui/views/shared/colors.dart';
@@ -45,8 +44,8 @@ class CurrentList extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   GestureDetector(
-                      onTap: () => Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => Meals())),
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const Meals())),
                       child: Text(mealName!, style: AppTextStyles.heading2)),
                   const SizedBox(
                     height: 0,
@@ -106,6 +105,7 @@ class CurrentList extends StatelessWidget {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Container Delivered(BuildContext context) {
     if (delivered!) {
       return Container(
