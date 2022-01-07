@@ -2,45 +2,37 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodsub/ui/views/authentication/sigin_in_view.dart';
-import 'package:foodsub/ui/views/shared/widgets/app_button.dart';
+import 'package:foodsub/ui/views/shared/Widgets/onboarding_column.dart';
 import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/shared/images.dart';
-import 'package:foodsub/ui/views/shared/widgets/onboarding_column.dart';
+import 'package:foodsub/ui/views/shared/widgets/app_button.dart';
+import 'package:foodsub/ui/views/startup/view_model/onboarding_cubit.dart';
 
-class OnboardingView extends StatefulWidget {
-  const OnboardingView({Key? key}) : super(key: key);
+class OnboardingView extends StatelessWidget {
+  OnboardingView({Key? key}) : super(key: key);
 
-  @override
-  State<OnboardingView> createState() => _OnboardingViewState();
-}
-
-class _OnboardingViewState extends State<OnboardingView> {
   int currentIndex = 0;
 
   final int numPages = 3;
 
   PageController? pageController;
+  final onboardingCubit = OnboardingCubit();
 
-  List<Widget> _buildPageIndicator() {
+  List<Widget> buildPageIndicator(OnboardingState state) {
     List<Widget> list = [];
-    for (int i = 0; i < numPages; i++) {
-      list.add(i == currentIndex ? _indicator(true) : _indicator(false));
+    for (int i = 0; i < state.numPages; i++) {
+      list.add(i == state.currentIndex ? _indicator(true) : _indicator(false));
     }
     return list;
   }
 
-  void onInit() {
-    pageController?.dispose();
-
-    super.initState();
-  }
-
-  void onChangedFunction(int index) {
-    setState(() {
-      currentIndex = index;
-    });
-  }
+  // void onInit() {
+  //   pageController?.dispose();
+  //
+  //
+  // }
 
   Widget _indicator(bool isActive) {
     return AnimatedContainer(
@@ -75,73 +67,79 @@ class _OnboardingViewState extends State<OnboardingView> {
       subtitleText: 'Easily track your order to know when it will reach you.',
     )
   ];
-
-  //  const OnboardingView({ Key? key }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return AnnotatedRegion(
-      value: const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.dark,
-      ),
-      child: Scaffold(
-        body: Column(
-          children: <Widget>[
-            Expanded(
-              child: PageView(
-                physics: const ClampingScrollPhysics(),
-                controller: pageController,
-                onPageChanged: onChangedFunction,
-                children: onboardingPages,
-              ),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height / 45),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: _buildPageIndicator(),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height / 45),
-            AppButton(
-                label: "Get Started",
-                color: AppColors.orange,
-                onPressed: () => Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => SignInView())),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16, horizontal: 100)),
-            SizedBox(height: MediaQuery.of(context).size.height / 4),
-            Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-              child: currentIndex == onboardingPages.length - 1
-                  ? const Text("")
-                  : Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Row(children: [
-                          GestureDetector(
-                            onTap: () {
-                              pageController?.nextPage(
-                                  duration: Duration(milliseconds: 500),
-                                  curve: Curves.ease);
-                            },
-                            child: Text(
-                              "Next",
-                              style: TextStyle(color: Colors.black),
+    return BlocProvider(
+      create: (context) => OnboardingCubit(),
+      child: AnnotatedRegion(
+        value: const SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.dark,
+        ),
+        child: Scaffold(
+          body: BlocBuilder<OnboardingCubit, OnboardingState>(
+              builder: (controller, state) {
+            return Column(
+              children: <Widget>[
+                Expanded(
+                  child: PageView(
+                    physics: const ClampingScrollPhysics(),
+                    controller: state.pageController,
+                    onPageChanged: BlocProvider.of<OnboardingCubit>(controller)
+                        .onChangedFunction,
+                    children: onboardingPages,
+                  ),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height / 45),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: buildPageIndicator(state),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height / 45),
+                AppButton(
+                    label: "Get Started",
+                    color: AppColors.orange,
+                    onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => SignInView())),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 16, horizontal: 100)),
+                SizedBox(height: MediaQuery.of(context).size.height / 4),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+                  child: state.currentIndex == onboardingPages.length - 1
+                      ? const Text("")
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                pageController?.nextPage(
+                                    duration: Duration(milliseconds: 0),
+                                    curve: Curves.ease);
+                              },
+                              child: Row(
+                                children: const [
+                                  Text(
+                                    "Next",
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  SizedBox(
+                                    width: 12,
+                                  ),
+                                  Icon(
+                                    Icons.arrow_forward_ios,
+                                    size: 12,
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          const SizedBox(
-                            width: 12,
-                          ),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 12,
-                          ),
-                        ]
-                            // style: kTextStyle,
-                            ),
-                      ],
-                    ),
-            ),
-          ],
+                          ],
+                        ),
+                ),
+              ],
+            );
+          }),
         ),
       ),
     );

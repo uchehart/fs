@@ -1,12 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:foodsub/ui/views/shared/widgets/app_button.dart';
-import 'package:foodsub/ui/views/shared/widgets/app_textfield.dart';
 import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/shared/style.dart';
+import 'package:foodsub/ui/views/shared/widgets/app_button.dart';
+import 'package:foodsub/ui/views/shared/widgets/app_textfield.dart';
 
 class ResetPasswordView extends StatelessWidget {
+  const ResetPasswordView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

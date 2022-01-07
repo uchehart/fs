@@ -2,12 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:foodsub/ui/views/authentication/verify_phone_number_view.dart';
-import 'package:foodsub/ui/views/shared/widgets/app_button.dart';
-import 'package:foodsub/ui/views/shared/widgets/app_textfield.dart';
 import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/shared/style.dart';
+import 'package:foodsub/ui/views/shared/widgets/app_button.dart';
+import 'package:foodsub/ui/views/shared/widgets/app_textfield.dart';
 
 class AllergiesView extends StatelessWidget {
+  const AllergiesView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
