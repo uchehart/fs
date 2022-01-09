@@ -4,6 +4,7 @@ import 'package:foodsub/ui/views/cart/cart_view.dart';
 import 'package:foodsub/ui/views/checkout/checkout_view.dart';
 import 'package:foodsub/ui/views/home/home_screen.dart';
 import 'package:foodsub/ui/views/screens/address/delivery_address.dart';
+import 'package:foodsub/ui/views/screens/new_meal_plan/meal_history.dart';
 import 'package:foodsub/ui/views/screens/notification/notification_screen.dart';
 import 'package:foodsub/ui/views/screens/sidebar/sidebar.dart';
 import 'package:foodsub/ui/views/shared/colors.dart';
@@ -57,6 +58,8 @@ class HomeView extends StatelessWidget {
                 return const NotificationScreen();
               case SideBar.routeName:
                 return const SideBar();
+              case MealHistory.routeName:
+                return const MealHistory();
               case DummyScreens.routeName:
                 return const DummyScreens(
                   text: 'Dummy Screen',

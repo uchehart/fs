@@ -4,6 +4,7 @@ import 'package:foodsub/ui/views/screens/new_meal_plan/current_meal_plan.dart';
 import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/shared/images.dart';
 import 'package:foodsub/ui/views/shared/style.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class History extends StatelessWidget {
   final String? imgPat;
@@ -26,17 +27,16 @@ class History extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding:
-              const EdgeInsets.only(top: 10, left: 5.0, right: 20, bottom: 10),
+          padding: const EdgeInsets.only(top: 10, left: 5.0, bottom: 10),
           child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
             Image.asset(
               imgPat!,
               fit: BoxFit.fill,
-              height: 90,
+              height: 80,
               width: 108,
             ),
             const SizedBox(
-              width: 20,
+              width: 5,
             ),
             Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,31 +45,40 @@ class History extends StatelessWidget {
                   GestureDetector(
                       onTap: () => Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const CurrentMeal())),
-                      child: Text(planName!, style: AppTextStyles.heading2)),
+                      child: Text(
+                        planName!,
+                        style: GoogleFonts.montserrat(
+                          color: AppColors.ash,
+                          fontSize: 16.0,
+                        ),
+                      )),
                   const SizedBox(
                     height: 0,
                   ),
                   Text(
                     planType!,
-                    style: AppTextStyles.heading3,
+                    style: GoogleFonts.montserrat(
+                      color: AppColors.ash,
+                      fontSize: 14.0,
+                    ),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
-                  SizedBox(
-                    width: 180,
-                    child: Row(
-                      children: [
-                        Text(
-                          planDate!,
-                          style: AppTextStyles.smallSubtitle,
+                  Row(
+                    children: [
+                      Text(
+                        planDate!,
+                        style: GoogleFonts.montserrat(
+                          color: AppColors.ash,
+                          fontSize: 12.0,
                         ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        planStatus(context)
-                      ],
-                    ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      planStatus(context)
+                    ],
                   )
                 ]),
             const Spacer(),
@@ -81,8 +90,10 @@ class History extends StatelessWidget {
                       return MealDialog();
                     });
               },
-              child: const Icon(Icons.more_vert_outlined,
-                  size: 14, color: AppColors.black),
+              child: const Padding(
+                padding: EdgeInsets.only(right: 5.0),
+                child: Icon(Icons.more_vert_outlined, color: AppColors.black),
+              ),
             ),
           ]),
         ),
@@ -151,31 +162,41 @@ class MealDialog extends StatelessWidget {
               Center(
                 child: Text(
                   'Pause Meal',
-                  style: AppTextStyles.smallSubtitle,
+                  style: GoogleFonts.montserrat(
+                    fontSize: 14.0,
+                  ),
                 ),
               ),
               Center(
                 child: Text(
                   'Play Meal',
-                  style: AppTextStyles.smallSubtitle,
+                  style: GoogleFonts.montserrat(
+                    fontSize: 14.0,
+                  ),
                 ),
               ),
               Center(
                 child: Text(
                   'Skip Meal',
-                  style: AppTextStyles.smallSubtitle,
+                  style: GoogleFonts.montserrat(
+                    fontSize: 14.0,
+                  ),
                 ),
               ),
               Center(
                 child: Text(
                   'Stop meal',
-                  style: AppTextStyles.smallSubtitle,
+                  style: GoogleFonts.montserrat(
+                    fontSize: 14.0,
+                  ),
                 ),
               ),
               Center(
                 child: Text(
                   'Reschedule meal',
-                  style: AppTextStyles.smallSubtitle,
+                  style: GoogleFonts.montserrat(
+                    fontSize: 14.0,
+                  ),
                 ),
               ),
             ],
