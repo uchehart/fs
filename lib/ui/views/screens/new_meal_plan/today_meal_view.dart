@@ -3,8 +3,6 @@ import 'package:foodsub/ui/views/screens/new_meal_plan/list.dart';
 import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/shared/style.dart';
 
-import 'meal_history.dart';
-
 class TodayMeal extends StatefulWidget {
   const TodayMeal({Key? key}) : super(key: key);
 
@@ -33,8 +31,8 @@ class _TodayMeal extends State<TodayMeal> {
         ),
         actions: [
           IconButton(
-            onPressed: () => Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => MealHistory())),
+            // ignore: avoid_returning_null_for_void
+            onPressed: () => null,
             icon: const Icon(
               Icons.notifications_none_outlined,
               color: AppColors.black,
