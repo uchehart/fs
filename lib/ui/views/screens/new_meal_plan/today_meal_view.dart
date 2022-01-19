@@ -27,7 +27,7 @@ class _TodayMeal extends State<TodayMeal> {
         ),
         title: Text(
           "Back",
-          style: AppTextStyles.heading1,
+          style: AppTextStyles.heading3,
         ),
         actions: [
           IconButton(
@@ -54,7 +54,7 @@ class _TodayMeal extends State<TodayMeal> {
                   children: [
                     Text(
                       "Today's Plan",
-                      style: AppTextStyles.heading1,
+                      style: AppTextStyles.heading3,
                     ),
                     const SizedBox(
                       width: 10,

@@ -56,7 +56,7 @@ class _Meals extends State<Meals> with SingleTickerProviderStateMixin {
             ),
             title: Text(
               "Back",
-              style: AppTextStyles.heading1,
+              style: AppTextStyles.heading3,
             ),
             actions: [
               IconButton(
