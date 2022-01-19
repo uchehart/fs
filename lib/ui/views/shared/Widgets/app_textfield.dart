@@ -59,14 +59,20 @@ class AppTextField extends StatelessWidget {
 //        label != null ? const SizedBox(height: 6) : SizedBox(),
         Text(
           title!,
-                   style: AppTextStyles.heading3.copyWith(fontSize: 18, height: height, ),
+          style: AppTextStyles.subtitle.copyWith(
+            fontWeight: FontWeight.w400,
+            height: height,
+          ),
         ),
         const SizedBox(height: 8),
         TextFormField(
           initialValue: intial,
           onSaved: onSaved,
           controller: controller,
-          style: AppTextStyles.heading3.copyWith(fontSize: 18, height: height, ),
+          style: AppTextStyles.heading3.copyWith(
+            fontSize: 18,
+            height: height,
+          ),
           onChanged: onChanged,
           maxLines: maxLines ?? 1,
           validator: validator,
