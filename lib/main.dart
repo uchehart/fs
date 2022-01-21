@@ -1,13 +1,100 @@
 import 'package:flutter/material.dart';
-//import 'package:foodsub/app/app.router.dart';
-import 'package:foodsub/ui/views/home/home_view.dart';
-//import 'package:stacked_services/stacked_services.dart';
-
-import 'app/app.locator.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:foodsub/ui/views/cart/cart_view.dart';
+import 'package:foodsub/ui/views/checkout/checkout_view.dart';
+import 'package:foodsub/ui/views/gifting/checkout_screen.dart';
+import 'package:foodsub/ui/views/gifting/gift_a_meal_screen.dart';
+import 'package:foodsub/ui/views/gifting/receipt_screen.dart';
+import 'package:foodsub/ui/views/gifting/receiver_detail_screen.dart';
+import 'package:foodsub/ui/views/gifting/redeem_meal_screen.dart';
+import 'package:foodsub/ui/views/gifting/view_meal_plan_screen.dart';
+import 'package:foodsub/ui/views/home/home_screen.dart';
+import 'package:foodsub/ui/views/screens/address/delivery_address.dart';
+import 'package:foodsub/ui/views/screens/new_meal_plan/meal_history.dart';
+import 'package:foodsub/ui/views/screens/notification/notification_screen.dart';
+import 'package:foodsub/ui/views/screens/sidebar/sidebar.dart';
+import 'package:foodsub/ui/views/shared/colors.dart';
+import 'package:foodsub/ui/views/startup/onboarding_view.dart';
+import 'package:foodsub/ui/views/startup/splash_screen_view.dart';
+import 'package:foodsub/ui/views/startup/view_model/onboarding_cubit.dart';
+import 'package:foodsub/ui/views/subscription/meal_info_view.dart';
+import 'package:foodsub/ui/views/subscription/meal_menu_view.dart';
+import 'package:foodsub/ui/views/subscription/subscribe_view.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setupLocator(); // Await will be added in future
-  // ignore: prefer_const_constructors
-  runApp(HomeView());
+  runApp(const HomeView());
+}
+
+class HomeView extends StatelessWidget {
+  const HomeView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<OnboardingCubit>(create: (context) => OnboardingCubit()),
+      ],
+      child: MaterialApp(
+        initialRoute: "/splashScreen",
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: (routeSettings) => MaterialPageRoute(
+          settings: routeSettings,
+          builder: (context) {
+            switch (routeSettings.name) {
+              case Navigator.defaultRouteName:
+                return OnboardingView();
+              case HomeScreenView.routeName:
+                return const HomeScreenView();
+              case SubscribeView.routeName:
+                return const SubscribeView();
+              case MealInfoView.routeName:
+                return const MealInfoView();
+              case MealMenuView.routeName:
+                return const MealMenuView();
+              case CheckoutView.routeName:
+                return const CheckoutView();
+              case CartView.routeName:
+                return const CartView();
+              case SplashScreenView.routeName:
+                return const SplashScreenView();
+              case DeliveryAddress.routeName:
+                return const DeliveryAddress();
+              case NotificationScreen.routeName:
+                return const NotificationScreen();
+              case SideBar.routeName:
+                return const SideBar();
+              case MealHistory.routeName:
+                return const MealHistory();
+              case GiftAMealScreen.routeName:
+                return const GiftAMealScreen();
+              case ReceiverDetailScreen.routeName:
+                return const ReceiverDetailScreen();
+              case CheckoutScreen.routeName:
+                return const CheckoutScreen();
+              case ReceiptScreen.routeName:
+                return const ReceiptScreen();
+              case RedeemMealScreen.routeName:
+                return const RedeemMealScreen();
+              case ViewMealPlanScreen.routeName:
+                return const ViewMealPlanScreen();
+              case DummyScreens.routeName:
+                return const DummyScreens(
+                  text: 'Dummy Screen',
+                );
+            }
+
+            throw FlutterError("Unknown Route: ${routeSettings.name}");
+          },
+        ),
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
+          colorScheme: const ColorScheme.light(
+            secondary: AppColors.orange,
+            primary: AppColors.orange,
+          ),
+        ),
+      ),
+    );
+  }
 }
