@@ -46,7 +46,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
         items: [
           NavBarItem(img: Icons.home_outlined, iconText: 'Home'),
           NavBarItem(img: Icons.history, iconText: 'History'),
-          NavBarItem(img: Icons.shopping_cart, iconText: 'Gifting'),
+          NavBarItem(img: Icons.wallet_giftcard_sharp, iconText: 'Gifting'),
           NavBarItem(img: Icons.person_outline, iconText: 'Profile'),
         ],
       ),
