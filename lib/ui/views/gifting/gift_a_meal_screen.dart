@@ -9,7 +9,7 @@ import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/shared/style.dart';
 
 class GiftAMealScreen extends StatefulWidget {
-  GiftAMealScreen({Key? key}) : super(key: key);
+  const GiftAMealScreen({Key? key}) : super(key: key);
   static const routeName = "/giftAMeal";
 
   @override
