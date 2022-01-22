@@ -1,28 +1,26 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:foodsub/ui/views/gifting/model/gift_pill_item.dart';
 
 class GiftingViewModel extends ChangeNotifier {
-  bool? _selected = false;
+  static GiftingViewModel get instance => _instance ??= GiftingViewModel();
 
-  int _groupVal = 0;
+  static GiftingViewModel? _instance;
 
-  int rval = 0;
   //getter
   List<GiftPillItem> get meal => _meal;
-  bool? get selected => _selected;
-  int get groupVal => _groupVal;
 
-  void isSelected() {
-    _selected = !_selected!;
+  late int rval = 0;
+  void onChange(val) {
+    rval = val;
     notifyListeners();
   }
 
-  void onChanged(val) {
-    // _selected = val;
-    _groupVal = val;
-    print(val);
-    print(_groupVal);
+  late bool selected = false;
+  late int rval1 = 0;
+  void onChange1(val) {
+    rval1 = val;
     notifyListeners();
+    // selected = !selected;
   }
 
   final List<GiftPillItem> _meal = [
