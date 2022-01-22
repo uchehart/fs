@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:foodsub/ui/views/gifting/model/gift_meal_pill.dart';
 import 'package:foodsub/ui/views/gifting/receiver_detail_screen.dart';
 import 'package:foodsub/ui/views/gifting/view_model/gifting_view_model.dart';
-import 'package:foodsub/ui/views/shared/Widgets/app_button.dart';
+import 'package:foodsub/ui/views/shared/widgets/app_button.dart';
 import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/shared/style.dart';
 
