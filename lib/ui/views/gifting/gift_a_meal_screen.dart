@@ -4,12 +4,35 @@ import 'package:foodsub/ui/views/gifting/model/gift_meal_pill.dart';
 import 'package:foodsub/ui/views/gifting/receiver_detail_screen.dart';
 import 'package:foodsub/ui/views/gifting/view_model/gifting_view_model.dart';
 import 'package:foodsub/ui/views/shared/Widgets/app_button.dart';
+import 'package:foodsub/ui/views/shared/Widgets/app_textfield.dart';
 import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/shared/style.dart';
 
-class GiftAMealScreen extends StatelessWidget {
+class GiftAMealScreen extends StatefulWidget {
   const GiftAMealScreen({Key? key}) : super(key: key);
   static const routeName = "/giftAMeal";
+
+  @override
+  State<GiftAMealScreen> createState() => _GiftAMealScreenState();
+}
+
+class _GiftAMealScreenState extends State<GiftAMealScreen> {
+  @override
+  int rval = 0;
+  onChange(val) {
+    setState(() {
+      rval = val;
+    });
+  }
+
+  bool selected = false;
+  int rval1 = 0;
+  onChange1(val) {
+    setState(() {
+      rval1 = val;
+      // selected = !selected;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,17 +78,14 @@ class GiftAMealScreen extends StatelessWidget {
             ListView.builder(
               shrinkWrap: true,
               itemCount: 2,
-              itemBuilder: (context, index) => GestureDetector(
-                onTap: () => controller.isSelected(),
-                child: GiftMealPill(
-                  selection: controller.meal[index].selection,
-                  noOfMeals: controller.meal[index].noOfMeals,
-                  price: controller.meal[index].price,
-                  groupValue: controller.groupVal,
-                  value: index,
-                  onPressed: (val) => controller.onChanged(val),
-                  isSelected: controller.selected!,
-                ),
+              itemBuilder: (context, index) => GiftMealPill(
+                selection: controller.meal[index].selection,
+                noOfMeals: controller.meal[index].noOfMeals,
+                price: controller.meal[index].price,
+                groupValue: rval1,
+                value: index,
+                onPressed: (val) => onChange1(val),
+                isSelected: rval1 == index ? selected = true : selected = false,
               ),
             ),
             const SizedBox(
@@ -89,10 +109,10 @@ class GiftAMealScreen extends StatelessWidget {
                   Row(
                     children: [
                       Radio(
-                        value: 1,
-                        groupValue: controller.rval,
+                        value: 0,
+                        groupValue: rval,
                         onChanged: (int? rval) {
-                          controller.onChanged(rval);
+                          onChange(rval);
                         },
                       ),
                       Text(
@@ -104,18 +124,24 @@ class GiftAMealScreen extends StatelessWidget {
                   Row(
                     children: [
                       Radio(
-                        value: 2,
-                        groupValue: controller.rval,
-                        onChanged: (int? rval) {
-                          controller.onChanged(rval);
-                        },
-                      ),
+                          value: 1,
+                          groupValue: rval,
+                          onChanged: (val) => onChange(val)),
                       Text(
                         "Custom",
                         style: AppTextStyles.subtitle,
                       )
                     ],
                   ),
+                  rval == 1
+                      ? Container(
+                          width: 200,
+                          child: const AppTextField(
+                            hintText: "Enter here...",
+                            title: "",
+                          ),
+                        )
+                      : Text(""),
                 ],
               ),
             ),

@@ -1,54 +1,63 @@
-import 'package:foodsub/ui/views/screens/notification/notification_tile.dart';
+import 'package:foodsub/models/notification.dart';
 import 'package:foodsub/ui/views/shared/images.dart';
 
-final List<NotificationTile> notification = <NotificationTile>[
-  const NotificationTile(
-    imgPath: foodsub,
-    notification: 'Jason! Hart just grabbed your order. He’s winging '
-        'his way to you this very moment. Track your order.',
-    time: '1 minutes ago',
-    view: false,
-  ),
-  const NotificationTile(
-    imgPath: foodsub,
-    notification: 'It’s like Christmas in July! Enjoy 20% off and more '
-        'with the latest rewards waiting for you.',
-    time: '2 hours ago',
-    view: false,
-  ),
-  const NotificationTile(
-      imgPath: foodsub,
-      notification: 'Early access to the NEW Ewa agoyin begins today! '
+final List<Info> notificationList = <Info>[
+  Info(
+      'Recent',
+      'Jason! Hart just grabbed your order. He’s winging '
+          'his way to you this very moment. Track your order.',
+      foodsub,
+      '1 minute ago',
+      false),
+  Info(
+      'Recent',
+      'Jason! Hart just grabbed your order. He’s winging '
+          'his way to you this very moment. Track your order.',
+      foodsub,
+      '2 hours ago',
+      false),
+  Info(
+      'Recent',
+      'It’s like Christmas in July! Enjoy 20% off and more '
+          'with the latest rewards waiting for you.',
+      foodsub,
+      '3 hours ago',
+      false),
+  Info(
+      'Recent',
+      'Early access to the NEW Ewa agoyin begins today! '
           'Click to order now!',
-      time: '3 hours ago',
-      view: false),
-  const NotificationTile(
-      imgPath: foodsub,
-      notification: 'Long weekends mean more time for sweet sips, '
+      foodsub,
+      '3 hours ago',
+      false),
+  Info(
+      'Recent',
+      'Long weekends mean more time for sweet sips, '
           'enjoy Food Sub’s famous coffee!',
-      time: '3 hours ago',
-      view: false),
-];
-
-final List<NotificationTile> yesterdayNoti = <NotificationTile>[
-  const NotificationTile(
-      imgPath: foodsub,
-      notification: 'Hi Marie, Enjoying your weekly suscription? Let '
+      foodsub,
+      '3 hours ago',
+      false),
+  Info(
+      'Yesterday',
+      'Hi Marie, Enjoying your weekly suscription? Let '
           'other users know by leaving a review. Your opinion '
           'matters!',
-      time: '22 hours ago',
-      view: false),
-  const NotificationTile(
-      imgPath: foodsub,
-      notification: 'You haven’t completed your suscription. Would '
+      foodsub,
+      '22 hours ago',
+      false),
+  Info(
+      'Yesterday',
+      'You haven’t completed your suscription. Would '
           'you like to do it now?',
-      time: '1 days ago',
-      view: true),
-  const NotificationTile(
-      imgPath: foodsub,
-      notification: 'Happy birthday Marie! Instead of cake, how about '
+      foodsub,
+      '1 days ago',
+      true),
+  Info(
+      'Yesterday',
+      'Happy birthday Marie! Instead of cake, how about '
           '20% discount off your next suscription? Claim '
           'now, you deserve it!',
-      time: '1 days ago',
-      view: true),
+      foodsub,
+      '1 days ago',
+      true),
 ];

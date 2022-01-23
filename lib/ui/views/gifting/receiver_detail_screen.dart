@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodsub/ui/views/gifting/checkout_screen.dart';
-import 'package:foodsub/ui/views/shared/Widgets/app_button.dart';
-import 'package:foodsub/ui/views/shared/Widgets/app_textfield.dart';
+import 'package:foodsub/ui/views/shared/widgets/app_button.dart';
+import 'package:foodsub/ui/views/shared/widgets/app_textfield.dart';
 import 'package:foodsub/ui/views/shared/colors.dart';
 
 class ReceiverDetailScreen extends StatelessWidget {

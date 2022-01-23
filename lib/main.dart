@@ -67,7 +67,7 @@ class HomeView extends StatelessWidget {
               case MealHistory.routeName:
                 return const MealHistory();
               case GiftAMealScreen.routeName:
-                return const GiftAMealScreen();
+                return GiftAMealScreen();
               case ReceiverDetailScreen.routeName:
                 return const ReceiverDetailScreen();
               case CheckoutScreen.routeName:
