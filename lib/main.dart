@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodsub/ui/views/cart/cart_view.dart';
 import 'package:foodsub/ui/views/checkout/checkout_view.dart';
+import 'package:foodsub/ui/views/gifting/checkout_screen.dart';
+import 'package:foodsub/ui/views/gifting/gift_a_meal_screen.dart';
+import 'package:foodsub/ui/views/gifting/receipt_screen.dart';
+import 'package:foodsub/ui/views/gifting/receiver_detail_screen.dart';
+import 'package:foodsub/ui/views/gifting/redeem_meal_screen.dart';
+import 'package:foodsub/ui/views/gifting/view_meal_plan_screen.dart';
 import 'package:foodsub/ui/views/home/home_screen.dart';
 import 'package:foodsub/ui/views/screens/address/delivery_address.dart';
 import 'package:foodsub/ui/views/screens/new_meal_plan/meal_history.dart';
@@ -60,6 +66,18 @@ class HomeView extends StatelessWidget {
                 return const SideBar();
               case MealHistory.routeName:
                 return const MealHistory();
+              case GiftAMealScreen.routeName:
+                return GiftAMealScreen();
+              case ReceiverDetailScreen.routeName:
+                return const ReceiverDetailScreen();
+              case CheckoutScreen.routeName:
+                return const CheckoutScreen();
+              case ReceiptScreen.routeName:
+                return const ReceiptScreen();
+              case RedeemMealScreen.routeName:
+                return const RedeemMealScreen();
+              case ViewMealPlanScreen.routeName:
+                return const ViewMealPlanScreen();
               case DummyScreens.routeName:
                 return const DummyScreens(
                   text: 'Dummy Screen',

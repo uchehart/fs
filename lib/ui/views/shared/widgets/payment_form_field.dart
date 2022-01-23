@@ -11,6 +11,7 @@ class PaymentFormField extends StatelessWidget {
   final FocusNode? focusNode;
   final String? hintText;
   final int? maxLength;
+  final TextInputType? keyBoardType;
 
   const PaymentFormField({
     Key? key,
@@ -21,6 +22,7 @@ class PaymentFormField extends StatelessWidget {
     this.focusNode,
     this.onComplete,
     this.inputAction,
+    this.keyBoardType,
   }) : super(key: key);
 
   @override
@@ -35,6 +37,7 @@ class PaymentFormField extends StatelessWidget {
       height: 52.0,
       child: TextFormField(
         onChanged: onChanged,
+        keyboardType: keyBoardType,
         focusNode: focusNode,
         maxLength: maxLength,
         validator: validator,
