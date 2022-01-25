@@ -46,6 +46,7 @@ class GiftMealPill extends StatelessWidget {
       child: Row(
         children: [
           Radio(
+            activeColor: AppColors.orange,
             value: value,
             groupValue: groupValue,
             onChanged: onPressed,
