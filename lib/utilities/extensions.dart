@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodsub/utilities/constants.dart';
+import 'package:intl/intl.dart';
 
 extension LitContext on BuildContext {
   SizedBox heightBox(int value) => SizedBox(height: height(value));
@@ -10,6 +11,10 @@ extension LitContext on BuildContext {
 
   double width(int value) =>
       MediaQuery.of(this).size.width * value / modelWidth;
+}
+
+extension LitDateTime on DateTime {
+  String toFullString() => DateFormat("MMMM d, y").format(this);
 }
 
 extension LitString on String {

@@ -16,7 +16,7 @@ class HistoryBody extends StatelessWidget{
     //final contr = BodyModel();
     //const Option()
     return SingleChildScrollView(
-        physics: bouncingPhysics,
+        physics: bouncingScrollPhysics,
         child: Column(
             children: scheduleList.map((index) => Column(
                 children: [
