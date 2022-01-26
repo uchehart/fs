@@ -44,10 +44,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   padding: const EdgeInsets.only(top: 20.0, right: 20.0),
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        HistoryScreen.routeName,
-                      );
                     },
                     child: Text(
                       'Clear All',
