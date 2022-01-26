@@ -5,8 +5,9 @@ import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/shared/widgets/big_button.dart';
 import 'package:foodsub/ui/views/shared/widgets/payment_form_field.dart';
 import 'package:foodsub/utilities/constants.dart';
-import 'package:foodsub/utilities/exts.dart';
+import 'package:foodsub/utilities/extensions.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class CheckoutView extends StatelessWidget {
   const CheckoutView({Key? key}) : super(key: key);
@@ -15,38 +16,36 @@ class CheckoutView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = CheckoutController.instance;
     return AnnotatedRegion(
       value: const SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.dark,
         statusBarColor: Colors.transparent,
       ),
-      child: AnimatedBuilder(
-        animation: controller,
-        builder: (context, child) => Scaffold(
-          appBar: AppBar(
-            iconTheme: const IconThemeData(color: AppColors.ash),
-            backgroundColor: Colors.white,
-            elevation: 0.0,
-            title: Text(
-              "Checkout",
-              style: GoogleFonts.montserrat(
-                fontWeight: FontWeight.w500,
-                color: AppColors.ash,
-                fontSize: 18.0,
-              ),
+      child: Scaffold(
+        appBar: AppBar(
+          iconTheme: const IconThemeData(color: AppColors.ash),
+          backgroundColor: Colors.white,
+          elevation: 0.0,
+          title: Text(
+            "Checkout",
+            style: GoogleFonts.montserrat(
+              fontWeight: FontWeight.w500,
+              color: AppColors.ash,
+              fontSize: 18.0,
             ),
           ),
-          body: Padding(
-            padding: const EdgeInsets.fromLTRB(32.0, 16.0, 32.0, 16.0),
-            child: Column(
+        ),
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(32.0, 16.0, 32.0, 16.0),
+          child: Consumer<CheckoutController>(
+            builder: (context, chkCtrl, child) => Column(
               children: [
                 Expanded(
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.only(bottom: 16.0),
-                    physics: bouncingPhysics,
+                    physics: bouncingScrollPhysics,
                     child: Form(
-                      key: controller.paymentFormKey,
+                      key: chkCtrl.paymentFormKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -116,9 +115,9 @@ class CheckoutView extends StatelessWidget {
                           ),
                           const SizedBox(height: 8.0),
                           PaymentFormField(
-                            focusNode: controller.focusNodes[0],
-                            onChanged: controller.onHolderChanged,
-                            onComplete: controller.focusNodes[1].requestFocus,
+                            focusNode: chkCtrl.focusNodes[0],
+                            onChanged: chkCtrl.onHolderChanged,
+                            onComplete: chkCtrl.focusNodes[1].requestFocus,
                             inputAction: TextInputAction.next,
                           ),
                           const SizedBox(height: 20.0),
@@ -131,9 +130,9 @@ class CheckoutView extends StatelessWidget {
                           ),
                           const SizedBox(height: 8.0),
                           PaymentFormField(
-                            focusNode: controller.focusNodes[1],
-                            onChanged: controller.onNumberChanged,
-                            onComplete: controller.focusNodes[2].requestFocus,
+                            focusNode: chkCtrl.focusNodes[1],
+                            onChanged: chkCtrl.onNumberChanged,
+                            onComplete: chkCtrl.focusNodes[2].requestFocus,
                             inputAction: TextInputAction.next,
                             maxLength: 16,
                           ),
@@ -154,10 +153,10 @@ class CheckoutView extends StatelessWidget {
                                     const SizedBox(height: 8.0),
                                     PaymentFormField(
                                       hintText: "MM/YY",
-                                      focusNode: controller.focusNodes[2],
-                                      onChanged: controller.onExpiryChanged,
+                                      focusNode: chkCtrl.focusNodes[2],
+                                      onChanged: chkCtrl.onExpiryChanged,
                                       onComplete:
-                                          controller.focusNodes[3].requestFocus,
+                                          chkCtrl.focusNodes[3].requestFocus,
                                       inputAction: TextInputAction.next,
                                       maxLength: 5,
                                     ),
@@ -178,8 +177,8 @@ class CheckoutView extends StatelessWidget {
                                     ),
                                     const SizedBox(height: 8.0),
                                     PaymentFormField(
-                                      focusNode: controller.focusNodes[3],
-                                      onChanged: controller.onSecurityChanged,
+                                      focusNode: chkCtrl.focusNodes[3],
+                                      onChanged: chkCtrl.onSecurityChanged,
                                       inputAction: TextInputAction.done,
                                       maxLength: 3,
                                     ),
@@ -193,14 +192,14 @@ class CheckoutView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Checkbox(
-                                value: controller.shouldSaveDetails,
-                                onChanged: controller.setShouldSaveDetails,
+                                value: chkCtrl.shouldSaveDetails,
+                                onChanged: chkCtrl.setShouldSaveDetails,
                                 activeColor: AppColors.borderAsh,
                                 checkColor: AppColors.ash,
                               ),
                               GestureDetector(
-                                onTap: () => controller.setShouldSaveDetails(
-                                  !controller.shouldSaveDetails,
+                                onTap: () => chkCtrl.setShouldSaveDetails(
+                                  !chkCtrl.shouldSaveDetails,
                                 ),
                                 child: Text(
                                   "Click to save card details",
@@ -220,7 +219,7 @@ class CheckoutView extends StatelessWidget {
                 BigButton(
                   label: "Pay Now",
                   onPressed: () {
-                    if (controller.paymentFormKey.currentState!.validate()) {
+                    if (chkCtrl.paymentFormKey.currentState!.validate()) {
                       showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
@@ -257,7 +256,7 @@ class CheckoutView extends StatelessWidget {
                       );
                     }
                   },
-                )
+                ),
               ],
             ),
           ),

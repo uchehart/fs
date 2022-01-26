@@ -4,7 +4,7 @@ import 'package:foodsub/ui/views/screens/notification/notification_screen.dart';
 import 'package:foodsub/ui/views/shared/widgets/app_button.dart';
 import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/shared/style.dart';
-import 'package:foodsub/utilities/exts.dart';
+import 'package:foodsub/utilities/extensions.dart';
 
 class ReceiptScreen extends StatelessWidget {
   const ReceiptScreen({Key? key}) : super(key: key);

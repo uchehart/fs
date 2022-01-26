@@ -6,8 +6,9 @@ import 'package:foodsub/ui/views/shared/widgets/payment_form_field.dart';
 import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/shared/widgets/big_button.dart';
 import 'package:foodsub/utilities/constants.dart';
-import 'package:foodsub/utilities/exts.dart';
+import 'package:foodsub/utilities/extensions.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class CheckoutScreen extends StatelessWidget {
   const CheckoutScreen({Key? key}) : super(key: key);
@@ -16,36 +17,34 @@ class CheckoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = CheckoutController.instance;
     return AnnotatedRegion(
       value: const SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.dark,
         statusBarColor: Colors.transparent,
       ),
-      child: AnimatedBuilder(
-        animation: controller,
-        builder: (context, child) => Scaffold(
-          appBar: AppBar(
-            iconTheme: const IconThemeData(color: AppColors.ash),
-            backgroundColor: Colors.white,
-            elevation: 0.0,
-            title: Text(
-              "Checkout",
-              style: GoogleFonts.montserrat(
-                fontWeight: FontWeight.w500,
-                color: AppColors.ash,
-                fontSize: 18.0,
-              ),
+      child: Scaffold(
+        appBar: AppBar(
+          iconTheme: const IconThemeData(color: AppColors.ash),
+          backgroundColor: Colors.white,
+          elevation: 0.0,
+          title: Text(
+            "Checkout",
+            style: GoogleFonts.montserrat(
+              fontWeight: FontWeight.w500,
+              color: AppColors.ash,
+              fontSize: 18.0,
             ),
           ),
-          body: Padding(
-            padding: const EdgeInsets.fromLTRB(32.0, 16.0, 32.0, 16.0),
-            child: Column(
+        ),
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(32.0, 16.0, 32.0, 16.0),
+          child: Consumer<CheckoutController>(
+            builder: (context, controller, child) => Column(
               children: [
                 Expanded(
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.only(bottom: 16.0),
-                    physics: bouncingPhysics,
+                    physics: bouncingScrollPhysics,
                     child: Form(
                       key: controller.paymentFormKey,
                       child: Column(
@@ -262,7 +261,7 @@ class CheckoutScreen extends StatelessWidget {
                           context, ReceiptScreen.routeName));
                     }
                   },
-                )
+                ),
               ],
             ),
           ),

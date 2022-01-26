@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 // Subscription
 const mealTypes = ["All", "Breakfast", "Lunch", "Dinner"];
 const mealAttributes = ["Description", "Ingredients", "Nutritional Values"];
-const deliveryIntervals = ["Daily", "Triweekly", "Weekends"];
 const subscriptionDurations = ["One Week", "One Month"];
 
 // Widgets
 const emptyInputBorder = OutlineInputBorder(borderSide: BorderSide.none);
-const bouncingPhysics = BouncingScrollPhysics();
+const neverScrollPhysics = NeverScrollableScrollPhysics();
+const bouncingScrollPhysics = BouncingScrollPhysics();
 const boxShadow = [
   BoxShadow(
     color: Color.fromRGBO(201, 201, 201, 0.18),
@@ -73,3 +73,5 @@ const dummyIngredients = [
   "Groundnut Oil",
   "Seasoning",
 ];
+
+const maxMeals = 8;

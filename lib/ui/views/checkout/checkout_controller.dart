@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
 class CheckoutController with ChangeNotifier {
-  static CheckoutController get instance => _instance ??= CheckoutController();
-  static CheckoutController? _instance;
-
   final focusNodes = List.generate(4, (index) => FocusNode());
   final paymentFormKey = GlobalKey<FormState>();
 

@@ -6,8 +6,9 @@ import 'package:foodsub/ui/views/screens/notification/notification_screen.dart';
 import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/subscription/subscribe_view.dart';
 import 'package:foodsub/utilities/constants.dart';
-import 'package:foodsub/utilities/exts.dart';
+import 'package:foodsub/utilities/extensions.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class DashboardView extends StatelessWidget {
   const DashboardView({Key? key}) : super(key: key);
@@ -16,51 +17,51 @@ class DashboardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = DashboardController.instance;
     return AnnotatedRegion(
       value: const SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.dark,
+        systemNavigationBarIconBrightness: Brightness.dark,
+        systemNavigationBarColor: Colors.white,
         statusBarColor: Colors.transparent,
       ),
-      child: AnimatedBuilder(
-        animation: controller,
-        builder: (context, child) => Scaffold(
-          appBar: AppBar(
-            iconTheme: const IconThemeData(color: AppColors.ash),
-            backgroundColor: Colors.white,
-            elevation: 0.0,
-            leading: Padding(
-              padding: EdgeInsets.only(left: context.width(20)),
+      child: Scaffold(
+        appBar: AppBar(
+          iconTheme: const IconThemeData(color: AppColors.ash),
+          backgroundColor: Colors.white,
+          elevation: 0.0,
+          leading: Padding(
+            padding: EdgeInsets.only(left: context.width(20)),
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.dashboard_outlined,
+                color: AppColors.ash,
+              ),
+            ),
+          ),
+          actions: [
+            Padding(
+              padding: EdgeInsets.only(right: context.width(20)),
               child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    NotificationScreen.routeName,
+                  );
+                },
                 icon: const Icon(
-                  Icons.dashboard_outlined,
+                  CupertinoIcons.bell,
                   color: AppColors.ash,
                 ),
               ),
             ),
-            actions: [
-              Padding(
-                padding: EdgeInsets.only(right: context.width(20)),
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      NotificationScreen.routeName,
-                    );
-                  },
-                  icon: const Icon(
-                    CupertinoIcons.bell,
-                    color: AppColors.ash,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          body: SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(32.0, 24.0, 32.0, 16.0),
-            physics: bouncingPhysics,
-            child: Column(
+          ],
+        ),
+        body: SingleChildScrollView(
+          physics: bouncingScrollPhysics,
+          padding: const EdgeInsets.fromLTRB(32.0, 24.0, 32.0, 16.0),
+          child: Consumer<DashboardController>(
+            builder: (context, dashCtrl, child) => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -78,7 +79,7 @@ class DashboardView extends StatelessWidget {
                 ),
                 context.heightBox(24),
                 Container(
-                  width: double.infinity,
+                  width: double.maxFinite,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16.0),
                     color: AppColors.orange,
@@ -146,7 +147,7 @@ class DashboardView extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    for (final image in controller.deliveryImages)
+                    for (final image in dashCtrl.deliveryImages)
                       Container(
                         width: context.width(56),
                         height: context.width(56),
@@ -162,7 +163,7 @@ class DashboardView extends StatelessWidget {
                 ),
                 context.heightBox(24),
                 ListView.separated(
-                  physics: bouncingPhysics,
+                  physics: bouncingScrollPhysics,
                   padding: const EdgeInsets.symmetric(horizontal: 4.0),
                   separatorBuilder: (context, index) =>
                       const SizedBox(height: 24.0),
@@ -188,7 +189,7 @@ class DashboardView extends StatelessWidget {
                         child: Row(
                           children: [
                             Container(
-                              child: Icon(controller.icons[index]),
+                              child: Icon(dashCtrl.icons[index]),
                               padding: const EdgeInsets.all(8.0),
                               decoration: const BoxDecoration(
                                 color: Color(0xFFF0F0F0),
@@ -197,7 +198,7 @@ class DashboardView extends StatelessWidget {
                             ),
                             context.widthBox(20),
                             Text(
-                              controller.actions[index],
+                              dashCtrl.actions[index],
                               style: GoogleFonts.montserrat(
                                 color: AppColors.ash,
                               ),
@@ -207,7 +208,7 @@ class DashboardView extends StatelessWidget {
                       ),
                     );
                   },
-                  itemCount: controller.actions.length,
+                  itemCount: dashCtrl.actions.length,
                   shrinkWrap: true,
                 ),
               ],

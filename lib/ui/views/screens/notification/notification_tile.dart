@@ -19,7 +19,7 @@ class _NotificationTileState extends State<NotificationTile> {
   Widget build(BuildContext context) {
     //Notification will be sort later base on time receieved
     return GroupedListView<Info, String>(
-      physics: bouncingPhysics,
+      physics: bouncingScrollPhysics,
       shrinkWrap: true,
       elements: notificationList,
       groupBy: (Info element) => element.sort!,
