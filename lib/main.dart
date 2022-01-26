@@ -10,6 +10,7 @@ import 'package:foodsub/ui/views/gifting/receipt_screen.dart';
 import 'package:foodsub/ui/views/gifting/receiver_detail_screen.dart';
 import 'package:foodsub/ui/views/gifting/redeem_meal_screen.dart';
 import 'package:foodsub/ui/views/gifting/view_meal_plan_screen.dart';
+import 'package:foodsub/ui/views/history/history_screen.dart';
 import 'package:foodsub/ui/views/home/home_screen.dart';
 import 'package:foodsub/ui/views/screens/address/delivery_address.dart';
 import 'package:foodsub/ui/views/screens/new_meal_plan/meal_history.dart';
@@ -92,13 +93,15 @@ class HomeView extends StatelessWidget {
                 return const RedeemMealScreen();
               case ViewMealPlanScreen.routeName:
                 return const ViewMealPlanScreen();
+              case HistoryScreen.routeName:
+                return const HistoryScreen();
               case DummyScreens.routeName:
                 return const DummyScreens(
                   text: 'Dummy Screen',
                 );
             }
 
-            throw FlutterError("Unknown Route: ${routeSettings.name}");
+            throw FlutterError("Unknown Route: dw${routeSettings.name}");
           },
         ),
         theme: ThemeData(

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:foodsub/ui/views/history/history_screen.dart';
 import 'package:foodsub/ui/views/screens/notification/notification_tile.dart';
 import 'package:foodsub/ui/views/screens/notification/notifications.dart';
 import 'package:foodsub/ui/views/shared/colors.dart';
@@ -43,9 +44,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   padding: const EdgeInsets.only(top: 20.0, right: 20.0),
                   child: GestureDetector(
                     onTap: () {
-                      setState(() {
-                        notificationList.clear();
-                      });
+                      Navigator.pushNamed(
+                        context,
+                        HistoryScreen.routeName,
+                      );
                     },
                     child: Text(
                       'Clear All',
@@ -56,7 +58,14 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 )
               ],
             ),
-            body: const NotificationTile(),
+            body: notificationList.isEmpty
+                ? const Center(child: Text('Notification empty'))
+                : const NotificationTile(),
+            //if (notificationList.isEmpty) {
+            // return const Center(
+            //   child: Text('No Notification'),
+            // );
+            //}
           ),
         ));
   }

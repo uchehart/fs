@@ -108,6 +108,7 @@ class _GiftAMealScreenState extends State<GiftAMealScreen> {
                   Row(
                     children: [
                       Radio(
+                        activeColor: AppColors.orange,
                         value: 0,
                         groupValue: rval,
                         onChanged: (int? rval) {
@@ -123,6 +124,7 @@ class _GiftAMealScreenState extends State<GiftAMealScreen> {
                   Row(
                     children: [
                       Radio(
+                          activeColor: AppColors.orange,
                           value: 1,
                           groupValue: rval,
                           onChanged: (val) => onChange(val)),
