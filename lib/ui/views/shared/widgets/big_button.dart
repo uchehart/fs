@@ -28,7 +28,7 @@ class BigButton extends StatelessWidget {
         label,
         style: GoogleFonts.montserrat(fontSize: 18.0),
       ),
-      minWidth: double.infinity,
+      minWidth: double.maxFinite,
       height: 52.0,
     );
   }
