@@ -52,18 +52,30 @@ class Option extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 2),
-        GestureDetector(
-          child: Container(
-            width: 44,
-            height: 35,
-            alignment: Alignment.center,
-            decoration: const BoxDecoration(
-              boxShadow: boxShadow,
-              color: Colors.white,
-            ),
-            child: const Icon(Icons.more_vert_outlined,
-                color: Color.fromRGBO(255, 169, 39, 1)),
+        Container(
+          width: 44,
+          height: 35,
+          alignment: Alignment.center,
+          decoration: const BoxDecoration(
+            boxShadow: boxShadow,
+            color: Colors.white,
           ),
+          child:  PopupMenuButton(
+              child: const Icon(Icons.more_vert_outlined,
+              color: Color.fromRGBO(255, 169, 39, 1)),
+              itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[
+            const PopupMenuItem<String>(child: Text('Play meal'), value: 'play'),
+            const PopupMenuItem<String>(child: Text('Pause meal'), value: 'pause'),
+            const PopupMenuItem<String>(child: Text('Skip meal'), value: 'skip'),
+            const PopupMenuItem<String>(child: Text('Change meal'), value: 'change'),
+            const PopupMenuItem<String>(child: Text('Stop meal'), value: 'stop'),
+            const PopupMenuItem<String>(child: Text('Reschedule meal'), value: 'reschedule'),
+          ],
+              onSelected: null,
+              elevation: 1.0
+          )
+          //const Icon(Icons.more_vert_outlined,
+              //color: Color.fromRGBO(255, 169, 39, 1)),
         )
       ],
     );

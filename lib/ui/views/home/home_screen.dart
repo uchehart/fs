@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodsub/ui/views/dashboard/dashboard_view.dart';
 import 'package:foodsub/ui/views/gifting/gifting_screen.dart';
+import 'package:foodsub/ui/views/history/history_screen.dart';
 import 'package:foodsub/ui/views/screens/new_meal_plan/meal_history.dart';
 import 'package:foodsub/ui/views/shared/colors.dart';
 import 'package:foodsub/ui/views/shared/widgets/nav_bar.dart';
@@ -19,7 +20,7 @@ class HomeScreenView extends StatefulWidget {
 class _HomeScreenViewState extends State<HomeScreenView> {
   final List<Widget> _children = [
     Center(child: DashboardView()), //Home widget should be placed here
-    Center(child: MealHistory()), //History widget should be placed here
+    Center(child: HistoryScreen()), //History widget should be placed here
     Center(child: GiftingScreen()), //Cart widget should be placed here
     Center(child: Text("Profile")), //Profile widget should be placed here
   ];
