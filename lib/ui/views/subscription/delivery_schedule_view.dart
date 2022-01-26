@@ -98,176 +98,186 @@ class DeliveryScheduleView extends StatelessWidget {
                 ),
                 const SizedBox(height: 16.0),
                 Expanded(
-                  child: ListView.separated(
-                    physics: bouncingScrollPhysics,
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(height: 24.0),
-                    itemBuilder: (context, index) {
-                      final day = selectedDays[index];
-                      final dayMeals = scheCtrl.dayMeals[day]!;
-                      return Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              right: 20.0,
-                              left: 32.0,
+                  child: SlidableAutoCloseBehavior(
+                    child: ListView.separated(
+                      physics: bouncingScrollPhysics,
+                      padding: const EdgeInsets.only(bottom: 16.0),
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(height: 24.0),
+                      itemBuilder: (context, index) {
+                        final day = selectedDays[index];
+                        final dayMeals = scheCtrl.dayMeals[day]!;
+                        return Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                right: 20.0,
+                                left: 32.0,
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "${day.name.toNameCase().substring(0, 3)} "
+                                    "${dayMeals.length}/$maxMeals",
+                                    style: GoogleFonts.montserrat(
+                                      color: AppColors.ash,
+                                    ),
+                                  ),
+                                  IconButton(
+                                    padding: EdgeInsets.zero,
+                                    icon:
+                                        const Icon(CupertinoIcons.add_circled),
+                                    onPressed: () => Navigator.pushNamed(
+                                      context,
+                                      MealMenuView.routeName,
+                                      arguments: day,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            ReorderableListView(
+                              physics: neverScrollPhysics,
+                              buildDefaultDragHandles: false,
+                              onReorder: (int oldIndex, int newIndex) =>
+                                  scheCtrl.reorderMeals(
+                                      oldIndex, newIndex, day),
                               children: [
-                                Text(
-                                  "${day.name.toNameCase().substring(0, 3)} "
-                                  "${dayMeals.length}/$maxMeals",
-                                  style: GoogleFonts.montserrat(
-                                    color: AppColors.ash,
-                                  ),
-                                ),
-                                IconButton(
-                                  padding: EdgeInsets.zero,
-                                  icon: const Icon(CupertinoIcons.add_circled),
-                                  onPressed: () => Navigator.pushNamed(
-                                    context,
-                                    MealMenuView.routeName,
-                                    arguments: day,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          ReorderableListView(
-                            physics: neverScrollPhysics,
-                            buildDefaultDragHandles: false,
-                            onReorder: (int oldIndex, int newIndex) =>
-                                scheCtrl.reorderMeals(oldIndex, newIndex, day),
-                            children: [
-                              for (final meal in dayMeals)
-                                Slidable(
-                                  key: UniqueKey(),
-                                  endActionPane: ActionPane(
-                                    motion: const BehindMotion(),
-                                    dragDismissible: false,
-                                    extentRatio: 0.32,
-                                    children: [
-                                      SlidableAction(
-                                        icon: Icons.swap_horiz,
-                                        onPressed: (context) =>
-                                            Navigator.pushNamed(
-                                          context,
-                                          MealMenuView.routeName,
-                                          arguments: day,
-                                        ),
-                                        backgroundColor: AppColors.orange,
-                                        foregroundColor: Colors.white,
-                                        label: "Replace Meal",
-                                      ),
-                                    ],
-                                  ),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(16.0),
-                                      boxShadow: boxShadow,
-                                      color: Colors.white,
-                                    ),
-                                    padding: const EdgeInsets.only(
-                                      bottom: 12.0,
-                                      right: 12.0,
-                                      left: 20.0,
-                                      top: 12.0,
-                                    ),
-                                    margin: const EdgeInsets.symmetric(
-                                      horizontal: 32.0,
-                                      vertical: 16.0,
-                                    ),
-                                    child: Row(
+                                for (final meal in dayMeals)
+                                  Slidable(
+                                    key: UniqueKey(),
+                                    groupTag: maxMeals,
+                                    endActionPane: ActionPane(
+                                      motion: const BehindMotion(),
+                                      dragDismissible: false,
+                                      extentRatio: 0.32,
                                       children: [
-                                        ReorderableDragStartListener(
-                                          index: dayMeals.indexOf(meal),
-                                          child: Container(
-                                            padding: const EdgeInsets.all(4.0),
-                                            child: const Icon(Icons.menu),
-                                            decoration: const BoxDecoration(
-                                              color: Color(0xFFF3F3F3),
-                                              shape: BoxShape.circle,
-                                            ),
+                                        SlidableAction(
+                                          icon: Icons.swap_horiz,
+                                          onPressed: (context) =>
+                                              Navigator.pushNamed(
+                                            context,
+                                            MealMenuView.routeName,
+                                            arguments: day,
                                           ),
-                                        ),
-                                        const SizedBox(width: 12.0),
-                                        Container(
-                                          padding: const EdgeInsets.all(16.0),
-                                          decoration: const BoxDecoration(
-                                            color: Color(0xFFF3F3F3),
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(16.0),
-                                            ),
-                                          ),
-                                          child: Image.asset(
-                                            meal.thumb,
-                                            height: 48.0,
-                                            width: 48.0,
-                                          ),
-                                        ),
-                                        const SizedBox(width: 12.0),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                "${meal.name} with",
-                                                style: GoogleFonts.montserrat(
-                                                  color: AppColors.ash,
-                                                  fontSize: 12.0,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 4.0),
-                                              Text(
-                                                meal.additions.value
-                                                    .map((add) => add.name)
-                                                    .join(", "),
-                                                style: GoogleFonts.montserrat(
-                                                  color: AppColors.ash,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 4.0),
-                                              Text(
-                                                "${meal.cals} cal",
-                                                style: GoogleFonts.montserrat(
-                                                  fontWeight: FontWeight.bold,
-                                                  color: AppColors.ash,
-                                                  fontSize: 12.0,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Builder(
-                                          builder: (context) => IconButton(
-                                            icon: const Icon(Icons.more_vert),
-                                            padding: EdgeInsets.zero,
-                                            onPressed: () {
-                                              final slider =
-                                                  Slidable.of(context)!;
-                                              if (!slider.animation.isCompleted) {
-                                                slider.openEndActionPane();
-                                              } else {
-                                                slider.close();
-                                              }
-                                            },
-                                          ),
+                                          backgroundColor: AppColors.orange,
+                                          foregroundColor: Colors.white,
+                                          label: "Replace Meal",
                                         ),
                                       ],
                                     ),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(16.0),
+                                        boxShadow: boxShadow,
+                                        color: Colors.white,
+                                      ),
+                                      padding: const EdgeInsets.only(
+                                        bottom: 12.0,
+                                        right: 12.0,
+                                        left: 20.0,
+                                        top: 12.0,
+                                      ),
+                                      margin: const EdgeInsets.symmetric(
+                                        horizontal: 32.0,
+                                        vertical: 16.0,
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          ReorderableDragStartListener(
+                                            index: dayMeals.indexOf(meal),
+                                            child: Container(
+                                              padding:
+                                                  const EdgeInsets.all(4.0),
+                                              child: const Icon(Icons.menu),
+                                              decoration: const BoxDecoration(
+                                                color: Color(0xFFF3F3F3),
+                                                shape: BoxShape.circle,
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(width: 12.0),
+                                          Container(
+                                            padding: const EdgeInsets.all(16.0),
+                                            decoration: const BoxDecoration(
+                                              color: Color(0xFFF3F3F3),
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(16.0),
+                                              ),
+                                            ),
+                                            child: Image.asset(
+                                              meal.thumb,
+                                              height: 48.0,
+                                              width: 48.0,
+                                            ),
+                                          ),
+                                          const SizedBox(width: 12.0),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "${meal.name} with",
+                                                  style: GoogleFonts.montserrat(
+                                                    color: AppColors.ash,
+                                                    fontSize: 12.0,
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 4.0),
+                                                Text(
+                                                  meal.additions.value
+                                                      .map((add) => add.name)
+                                                      .join(", "),
+                                                  style: GoogleFonts.montserrat(
+                                                    color: AppColors.ash,
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 4.0),
+                                                Text(
+                                                  "${meal.cals} cal",
+                                                  style: GoogleFonts.montserrat(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: AppColors.ash,
+                                                    fontSize: 12.0,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Builder(
+                                            builder: (context) => IconButton(
+                                              icon: const Icon(Icons.more_vert),
+                                              padding: EdgeInsets.zero,
+                                              onPressed: () {
+                                                final slider =
+                                                    Slidable.of(context)!;
+                                                if (!slider
+                                                    .animation.isCompleted) {
+                                                  slider.openEndActionPane();
+                                                } else {
+                                                  slider.close();
+                                                }
+                                              },
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ),
-                                ),
-                            ],
-                            shrinkWrap: true,
-                          ),
-                        ],
-                      );
-                    },
-                    itemCount: selectedDays.length,
+                              ],
+                              shrinkWrap: true,
+                            ),
+                          ],
+                        );
+                      },
+                      itemCount: selectedDays.length,
+                    ),
+                    closeWhenTapped: false,
                   ),
                 ),
                 Padding(
