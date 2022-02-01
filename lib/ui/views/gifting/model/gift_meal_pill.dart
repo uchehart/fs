@@ -38,7 +38,7 @@ class GiftMealPill extends StatelessWidget {
               ))
           : BoxDecoration(
               border: Border.all(
-                color: AppColors.ash,
+                color: Colors.grey.shade200,
               ),
               borderRadius: const BorderRadius.all(
                 Radius.circular(8),
@@ -53,7 +53,8 @@ class GiftMealPill extends StatelessWidget {
           ),
           Text(
             selection,
-            style: AppTextStyles.subtitle,
+            style: AppTextStyles.subtitle
+                .copyWith(color: isSelected! ? AppColors.black : Colors.grey),
           ),
           const Spacer(),
           const Icon(
@@ -65,7 +66,8 @@ class GiftMealPill extends StatelessWidget {
             children: [
               Text(
                 price,
-                style: AppTextStyles.subtitle,
+                style: AppTextStyles.subtitle.copyWith(
+                    color: isSelected! ? AppColors.black : Colors.grey),
               ),
               Text(
                 "$noOfMeals meals",
