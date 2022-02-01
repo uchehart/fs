@@ -1,12 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class DashboardController with ChangeNotifier {
-  static DashboardController get instance =>
-      _instance ??= DashboardController();
-
-  static DashboardController? _instance;
-
+class DashboardController {
   final deliveryImages = [
     "assets/smoothie_delivery.png",
     "assets/stew_delivery.png",

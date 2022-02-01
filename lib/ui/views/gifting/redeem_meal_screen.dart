@@ -12,7 +12,7 @@ class RedeemMealScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final codeController = TextEditingController();
-    final emailController = TextEditingController();
+    // final emailController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: AppColors.ash),

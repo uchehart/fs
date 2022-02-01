@@ -19,7 +19,7 @@ class _NotificationTileState extends State<NotificationTile> {
   Widget build(BuildContext context) {
     //Notification will be sort later base on time receieved
     return GroupedListView<Info, String>(
-      physics: bouncingPhysics,
+      physics: bouncingScrollPhysics,
       shrinkWrap: true,
       elements: notificationList,
       groupBy: (Info element) => element.sort!,
@@ -29,7 +29,7 @@ class _NotificationTileState extends State<NotificationTile> {
       //useStickyGroupSeparators:
       order: GroupedListOrder.DESC,
       groupSeparatorBuilder: (String value) => Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.only(left: 20, bottom: 10, top: 10),
           child: Text(
             value,
             style: GoogleFonts.montserrat(
@@ -39,20 +39,21 @@ class _NotificationTileState extends State<NotificationTile> {
             ),
           )),
       itemBuilder: (context, element) {
-        if (notificationList.isEmpty) {
-          return const Center(
-            child: Text('No Notification'),
-          );
-        }
         return Container(
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 color: element.view == false
                     ? const Color.fromRGBO(255, 236, 197, 1)
                     : Colors.transparent,
-                border: const Border(
-                    bottom: BorderSide(color: Color.fromRGBO(69, 68, 68, 0.3)),
-                    top: BorderSide(color: Color.fromRGBO(69, 68, 68, 0.3)))),
+                border: Border(
+                    bottom:
+                        element.notification?.indexOf(element.notification!) ==
+                                element.notification!.length - 1
+                            ? const BorderSide(
+                                color: Color.fromRGBO(69, 68, 68, 0.3))
+                            : const BorderSide(color: Colors.transparent),
+                    top: const BorderSide(
+                        color: Color.fromRGBO(69, 68, 68, 0.3)))),
             child: ListTile(
               leading: Container(
                 width: 41,
